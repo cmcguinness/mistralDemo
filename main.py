@@ -5,6 +5,8 @@ import json
 import os
 import time
 import requests
+import textwrap
+
 
 
 class Mistral:
@@ -75,4 +77,9 @@ if __name__ == "__main__":
         if error_code is not None:
             print(f'Chatbot ({elapsed_time:4.1f} seconds): Error response code {error_code}')
         else:
-            print(f'Chatbot ({elapsed_time:4.1f} seconds): {answer}')
+            title = f'Chatbot ({elapsed_time:4.1f} seconds): '
+
+            lines = textwrap.wrap(answer,80)
+            formatted = ('\n' + (' '*len(title))).join(lines)
+
+            print(f'{title}{formatted}')
